@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gc:CodeList
+    xmlns:gc="http://docs.oasis-open.org/codelist/ns/genericode/1.0/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Identification>
+        <ShortName>Short Name</ShortName>
+        <Version>1.0</Version>
+        <CanonicalUri>urn:uuid:d5138852-fafb-4ac9-9d94-9cf38a9cf50f</CanonicalUri>
+        <CanonicalVersionUri>urn:uuid:c8b7896c-c09f-408b-8c3d-8e7876a2bb48</CanonicalVersionUri>
+        <LocationUri>https://</LocationUri>
+        <AlternateFormatLocationUri MimeType="text/csv"></AlternateFormatLocationUri>
+        <AlternateFormatLocationUri MimeType="text/html"></AlternateFormatLocationUri>
+        <Agency>
+            <LongName>Agency</LongName>
+        </Agency>
+    </Identification>
+    <ColumnSet>
+        <Column
+            Id="code"
+            Use="required">
+            <ShortName>kode </ShortName>
+            <Data Type="string" />
+        </Column>
+        <Column
+            Id="name"
+            Use="required">
+            <ShortName>navn </ShortName>
+            <Data
+                Type="string"
+                Lang="en" />
+        </Column>
+    </ColumnSet>
+    <SimpleCodeList />
+</gc:CodeList>

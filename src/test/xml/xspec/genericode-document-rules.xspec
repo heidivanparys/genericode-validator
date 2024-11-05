@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description
+    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+    schematron="../../../main/xml/schemas/schematron/genericode-document-rules.sch"
+    run-as="external">
+    
+    <!-- run-as="external" must be present on x:description,
+    otherwise the following error will occur:
+    XPDY0002  Finding root of tree: the context item is absent
+    In the error message, the variable availableColumns and/or requiredColumns will be
+    mentioned.
+    See also https://www.oxygenxml.com/forum/common-problems/topic24076.html
+    and https://github.com/xspec/xspec/wiki/External-Transformation -->
+
+    <x:scenario label="Code list full of errors">
+        <x:context href="../data/genericode-document-rules/code-list-with-errors.gc" />
+        <x:scenario label="Document rules violations">
+            <x:expect-assert id="rule_1" count="1" />
+            <x:expect-assert id="rule_19" count="2" />
+            <x:expect-assert id="rule_39" count="3" />
+        </x:scenario>
+    </x:scenario>
+    
+    <x:scenario label="Danish template">
+        <x:context href="../../../../templates/template_da.gc" />
+        <x:scenario label="Document rules compliance">
+            <x:expect-not-assert id="rule_1" />
+            <x:expect-not-assert id="rules_4_25_30_48" />
+            <x:expect-not-assert id="rules_6_27_32_44_50" />
+            <x:expect-not-assert id="rule_19" />
+            <x:expect-not-assert id="rule_24" />
+            <x:expect-not-assert id="rule_34" />
+            <x:expect-not-assert id="rule_37" />
+            <x:expect-not-assert id="rule_39" />
+            <x:expect-not-assert id="rule_42" />
+            <x:expect-not-assert id="rule_43" />
+        </x:scenario>
+    </x:scenario>
+
+</x:description>

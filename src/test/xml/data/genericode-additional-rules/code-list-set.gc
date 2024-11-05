@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gc:CodeListSet
+    xmlns:gc="http://docs.oasis-open.org/codelist/ns/genericode/1.0/"
+    xmlns:xml="http://www.w3.org/XML/1998/namespace"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Identification>
+        <ShortName>TestCodeListSet</ShortName>
+        <Version>1.0.0</Version>
+        <CanonicalUri>urn:uuid:849c0ab5-4fed-4264-aa38-b9aca946b157</CanonicalUri>
+        <CanonicalVersionUri>urn:uuid:a38b6f72-9e81-480e-ad44-a3f97adc9f31</CanonicalVersionUri>
+    </Identification>
+    <CodeListRef>
+        <CanonicalUri>urn:uuid:0570084c-e427-4907-a6c3-5474671f0c6b</CanonicalUri>
+        <CanonicalVersionUri>urn:uuid:35b7dc87-864e-417a-9f4c-8d26c82d4aba</CanonicalVersionUri>
+    </CodeListRef>
+</gc:CodeListSet>

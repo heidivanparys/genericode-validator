@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description
+    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+    xmlns:gc="http://docs.oasis-open.org/codelist/ns/genericode/1.0/"
+    schematron="../../../main/xml/schemas/schematron/genericode-additional-rules.sch">
+    
+    <x:scenario label="Wrong document type">
+        <x:context href="../data/genericode-additional-rules/code-list-set.gc" />
+        <x:scenario label="Document rules violations">
+            <x:expect-assert id="codelist" count="1" />
+        </x:scenario>
+    </x:scenario>
+    
+    <x:scenario label="Code list full of errors">
+        <x:context href="../data/genericode-additional-rules/code-list-with-errors.gc" />
+        <x:scenario label="Document rules violations">
+            <x:expect-assert id="codelist_additional_metadata" count="1" />
+            <x:expect-assert id="semver" count="1" />
+        </x:scenario>
+    </x:scenario>
+    
+    <x:scenario label="Danish template">
+        <x:context href="../../../../templates/template_da.gc" />
+        <x:scenario label="Additional rules compliance">
+            <x:expect-not-assert id="codelist_additional_metadata" />
+            <x:expect-not-assert id="semver" />
+        </x:scenario>
+    </x:scenario>
+
+</x:description>
