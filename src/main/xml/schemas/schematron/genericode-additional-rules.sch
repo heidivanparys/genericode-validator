@@ -3,6 +3,9 @@
     xmlns="http://purl.oclc.org/dsdl/schematron"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     queryBinding="xslt2">
+    
+    <title>Additional rules for genericode files</title>
+    <p>Additional rules for genericode files are specified by KDS.</p>
 
     <ns
         prefix="dcterms"

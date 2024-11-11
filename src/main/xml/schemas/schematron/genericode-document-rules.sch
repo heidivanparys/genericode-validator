@@ -21,6 +21,9 @@
     xmlns="http://purl.oclc.org/dsdl/schematron"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     queryBinding="xslt2">
+    
+    <title>Document rules for genericode files</title>
+    <p>The document rules for genericode files are specified in the genericode specification.</p>
 
     <ns
         prefix="gc"
