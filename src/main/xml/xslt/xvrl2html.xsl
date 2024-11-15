@@ -32,9 +32,9 @@
                 See https://github.com/kevquirk/simple.css/issues/48#issuecomment-1175885375 -->
                 <style>
                     body {
-                        grid-template-columns: 0fr 90% 0fr;
-                        place-content: center;
-                        font-size: 1rem;
+                    grid-template-columns: 0fr 90% 0fr;
+                    place-content: center;
+                    font-size: 1rem;
                     }
                 </style>
             </head>
@@ -47,7 +47,9 @@
                     </div>
                 </header>
                 <main>
-                    <xsl:apply-templates select="." mode="summary" />
+                    <xsl:apply-templates
+                        select="."
+                        mode="summary" />
                     <xsl:apply-templates select="xvrl:report" />
                 </main>
             </body>
@@ -105,30 +107,32 @@
                 </xsl:choose>
             </h2>
             <table>
-            <tr>
-                <th scope="row">Schema</th>
-                <td>
-                    <a>
-                        <xsl:attribute
-                            name="href"
-                            select="xvrl:metadata/xvrl:schema" />
-                        <xsl:value-of select="xvrl:metadata/xvrl:schema" />
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Timestamp</th>
-                <td>
-                    <xsl:value-of select="xvrl:metadata/xvrl:timestamp" />
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Number of detections</th>
-                <td>
-                    <xsl:value-of select="count(xvrl:detection)" />
-                </td>
-            </tr>
-        </table>
+                <tr>
+                    <th scope="row">Schema</th>
+                    <td>
+                        <xsl:if test="exists(xvrl:metadata/xvrl:schema/@href)">
+                            <a>
+                                <xsl:attribute
+                                    name="href"
+                                    select="xvrl:metadata/xvrl:schema/@href" />
+                                <xsl:value-of select="xvrl:metadata/xvrl:schema/@href" />
+                            </a>
+                        </xsl:if>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Timestamp</th>
+                    <td>
+                        <xsl:value-of select="xvrl:metadata/xvrl:timestamp" />
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Number of detections</th>
+                    <td>
+                        <xsl:value-of select="count(xvrl:detection)" />
+                    </td>
+                </tr>
+            </table>
             <table>
                 <thead>
                     <tr>
