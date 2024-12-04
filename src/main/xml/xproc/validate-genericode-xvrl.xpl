@@ -18,11 +18,13 @@
 
     <p:input
         port="source"
-        primary="true" />
+        primary="true"
+        content-types="xml" />
 
     <p:output
         port="result"
-        primary="true">
+        primary="true"
+        content-types="xml">
         <p:pipe
             step="create-copy-of-input"
             port="result" />
@@ -30,7 +32,8 @@
 
     <p:output
         port="report"
-        primary="false">
+        primary="false"
+        content-types="xml">
         <p:pipe
             step="add-metadata"
             port="result" />

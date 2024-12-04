@@ -28,7 +28,7 @@ This tool relies on the presence of Java, the XProc processor Morgana, the XSLT 
 
 A validation report for a genericode file is created by processing the genericode file in a pipeline written in [XProc](https://xproc.org/).
 
-Create a file morgana-config.xml file in folder `local-scripts`. Customise the path in element `path_to_SchXSLT_2`, and adjust the value of element `xslt-connector` to match the value specified for your version of Saxon as specified in https://www.xml-project.com/manual/ch02.html#configuration_s1_1_s2_2.
+Create a file morgana-config.xml file in folder `local-scripts`. Customise the path in element `path_to_SchXSLT_2`, adjust the value of element `xslt-connector` to match the value specified for your version of Saxon as specified in https://www.xml-project.com/manual/ch02.html#configuration_s1_1_s2_2, and make sure to add a media type mapping for genericode files (*.gc), see https://www.xml-project.com/manual/ch02.html#configuration_s1_5.
 
 ```xml
 <morgana-config xmlns="http://www.xml-project.com/morganaxproc">	
@@ -50,7 +50,7 @@ Create a file morgana-config.xml file in folder `local-scripts`. Customise the p
 Create a batch file `validate-genericode-html.bat` in folder `local-scripts` as follows, adjust the paths to the input and output:
 
 ```bat
-Morgana -config=local-scripts\morgana-config.xml src\main\xml\xproc\validate-genericode-html.xpl -input:source="C:\path\to\genericode-file.gc" -output:result="C:\path\to\report.xhtml" -option:assert-valid=false
+Morgana -config=local-scripts\morgana-config.xml src\main\xml\xproc\validate-genericode-html.xpl -input:source="C:\path\to\genericode-file.gc" -output:result="C:\path\to\report.html" -option:assert-valid=false
 ```
 
 Run `validate-genericode-html.bat` from the root directory of the repository:
