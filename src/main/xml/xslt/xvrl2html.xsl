@@ -7,40 +7,42 @@
     xmlns:xvrl="http://www.xproc.org/ns/xvrl"
     exclude-result-prefixes="#all">
   
-    <!-- html-version: see:
-	https://www.saxonica.com/documentation12/index.html#!xsl-elements/output
-	https://www.w3.org/TR/xslt-30/ -->
     <xsl:output
-        method="xhtml"
+        method="html"
         html-version="5.0"
         omit-xml-declaration="yes"
         indent="yes" />
 
     <xsl:mode on-no-match="shallow-copy" />
+    
+    <xsl:param
+        name="designsystemVersion"
+        select="'8'" />
+
+    <xsl:param
+        name="designsystemUrl"
+        select="'https://cdn.dataforsyningen.dk/assets/designsystem/v' || $designsystemVersion" />
 
     <xsl:template match="/xvrl:reports">
-        <html>
+        <html lang="en">
             <head>
                 <title>
-                    <xsl:value-of select="xvrl:metadata/xvrl:title" />
+                    <xsl:value-of select="xvrl:metadata/xvrl:title || ' for ' || tokenize(xvrl:metadata/xvrl:document, '/')[last()]" />
                 </title>
-                <!-- Quick and simple styling, see https://simplecss.org/ -->
-                <link
-                    rel="stylesheet"
-                    href="https://cdn.simplecss.org/simple.min.css" />
-                <!-- Allow for wide content
-                See https://github.com/kevquirk/simple.css/issues/48#issuecomment-1175885375 -->
-                <style>
-                    body {
-                    grid-template-columns: 0fr 90% 0fr;
-                    place-content: center;
-                    font-size: 1rem;
-                    }
-                </style>
+                <meta charset="utf-8" /><!-- See https://html.spec.whatwg.org/multipage/semantics.html#charset -->
+                <meta
+                    name="viewport"
+                    content="width=device-width, initial-scale=1.0" /><!-- Nice view, also for narrow screen devices, see https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag -->
+                <link rel="stylesheet">
+                    <xsl:attribute
+                        name="href"
+                        select="$designsystemUrl || '/designsystem.css'" />
+                </link>
             </head>
             <body>
-                <header>
-                    <div>
+                <header class="ds-header">
+                    <div class="ds-container">
+                        <!-- It is on purpose that no logo is shown, as this is just a validation report, not a for use on a website -->
                         <h1>
                             <xsl:value-of select="xvrl:metadata/xvrl:title" />
                         </h1>
@@ -59,37 +61,38 @@
     <xsl:template
         match="xvrl:reports"
         mode="summary">
-        <h2>Summary</h2>
-        <table>
-            <tr>
-                <th scope="row">Document</th>
-                <td>
-                    <a>
-                        <xsl:attribute
-                            name="href"
-                            select="xvrl:metadata/xvrl:document" />
-                        <xsl:value-of select="xvrl:metadata/xvrl:document" />
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Timestamp</th>
-                <td>
-                    <xsl:value-of select="xvrl:metadata/xvrl:timestamp" />
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Total number of detections</th>
-                <td>
-                    <xsl:value-of select="count(xvrl:report/xvrl:detection)" />
-                </td>
-            </tr>
-        </table>
-
+        <section class="ds-container">
+            <h2>Summary</h2>
+            <table>
+                <tr>
+                    <th scope="row">Document</th>
+                    <td>
+                        <a>
+                            <xsl:attribute
+                                name="href"
+                                select="xvrl:metadata/xvrl:document" />
+                            <xsl:value-of select="xvrl:metadata/xvrl:document" />
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Timestamp</th>
+                    <td>
+                        <xsl:value-of select="xvrl:metadata/xvrl:timestamp" />
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Total number of detections</th>
+                    <td>
+                        <xsl:value-of select="count(xvrl:report/xvrl:detection)" />
+                    </td>
+                </tr>
+            </table>
+        </section>
     </xsl:template>
 
     <xsl:template match="xvrl:report">
-        <section>
+        <section class="ds-container">
             <h2>
                 <xsl:choose>
                     <xsl:when test="exists(xvrl:metadata/xvrl:title)">
