@@ -16,15 +16,18 @@
 
     <p:input
         port="source"
-        primary="true" />
+        primary="true"
+        content-types="xml" />
 
     <p:input
         port="schema"
-        primary="false" />
+        primary="false"
+        content-types="xml" />
 
     <p:output
         port="result"
-        primary="true">
+        primary="true"
+        content-types="xml">
         <p:pipe
             step="validate-with-schematron-svrl"
             port="result" />
@@ -32,7 +35,8 @@
 
     <p:output
         port="report"
-        primary="false">
+        primary="false"
+        content-types="xml">
         <p:pipe
             step="svrl-2-xvrl"
             port="result" />
@@ -70,6 +74,7 @@
         name="store-svrl-report"
         message="Store SVRL document for debugging"
         href="{'../../../../target/validate-with-schematron-svrl-' || format-time(current-time(),'[H01][m01][s01][f001]') || '.svrl'}"
+        serialization="map { 'indent': true() }"
         use-when="$debug">
         <p:with-input port="source">
             <p:pipe

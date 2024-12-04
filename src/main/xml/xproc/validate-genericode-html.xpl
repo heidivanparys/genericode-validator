@@ -17,11 +17,13 @@
 
     <p:input
         port="source"
-        primary="true" />
+        primary="true"
+        content-types="xml" />
 
     <p:output
         port="result"
-        primary="true">
+        primary="true"
+        content-types="html">
     </p:output>
 
     <p:option
@@ -47,6 +49,7 @@
         name="store-xvrl-report"
         message="Store XVRL document for debugging"
         href="{'../../../../target/validate-genericode-html-store-xvrl-report-' || format-time(current-time(),'[H01][m01][s01][f001]') || '.xvrl'}"
+        serialization="map { 'indent': true() }"
         use-when="$debug">
         <p:with-input port="source">
             <p:pipe
