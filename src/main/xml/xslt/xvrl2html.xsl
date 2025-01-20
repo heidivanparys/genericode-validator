@@ -110,19 +110,31 @@
                 </xsl:choose>
             </h2>
             <table>
-                <tr>
-                    <th scope="row">Schema</th>
-                    <td>
-                        <xsl:if test="exists(xvrl:metadata/xvrl:schema/@href)">
+                <xsl:if test="exists(xvrl:metadata/xvrl:schema/@href)">
+                    <tr>
+                        <th scope="row">Schema</th>
+                        <td>
                             <a>
                                 <xsl:attribute
                                     name="href"
                                     select="xvrl:metadata/xvrl:schema/@href" />
                                 <xsl:value-of select="xvrl:metadata/xvrl:schema/@href" />
                             </a>
-                        </xsl:if>
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
+                </xsl:if>
+                <xsl:if test="exists(xvrl:metadata/xvrl:summary)">
+                    <tr>
+                        <!-- In the XVRL specification,
+                        the summary element is defined as 
+                        "An abstract of a report, a reports collection, or an individual detection."
+                        Therefore the term "Abstract" in the HTML report -->
+                        <th scope="row">Abstract</th>
+                        <td>
+                            <xsl:value-of select="xvrl:metadata/xvrl:summary" />
+                        </td>
+                    </tr>
+                </xsl:if>
                 <tr>
                     <th scope="row">Timestamp</th>
                     <td>
@@ -140,6 +152,9 @@
                 <thead>
                     <tr>
                         <th scope="col">Severity</th>
+                        <xsl:if test="exists(xvrl:detection/xvrl:category)">
+                            <th scope="col">Category</th>
+                        </xsl:if>
                         <th scope="col">Message</th>
                         <th scope="col">Location</th>
                         <th scope="col">Supplemental information</th>
@@ -151,6 +166,11 @@
                             <td>
                                 <xsl:value-of select="@severity" />
                             </td>
+                            <xsl:if test="exists(xvrl:category)">
+                                <td>
+                                    <xsl:value-of select="xvrl:category" />
+                                </td>
+                            </xsl:if>
                             <td>
                                 <xsl:value-of select="xvrl:message" />
                             </td>
