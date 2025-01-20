@@ -109,6 +109,12 @@
                     name="xpath"
                     select="@location" />
             </location>
+            <!-- The name of the pattern defining the assert/report is used as category. -->
+            <xsl:if test="exists(preceding-sibling::svrl:active-pattern[1]/@name)">
+                <category>
+                    <xsl:value-of select="preceding-sibling::svrl:active-pattern[1]/@name" />
+                </category>
+            </xsl:if>
             <xsl:apply-templates select="$rule/@context" />
             <xsl:apply-templates select="svrl:text" />
             <xsl:apply-templates select="svrl:diagnostic-reference" />
