@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gc:CodeList
+    xmlns:gc="http://docs.oasis-open.org/codelist/ns/genericode/1.0/"
+    xmlns:dcterms="http://purl.org/dc/terms/">
+    <Annotation>
+        <Description>
+			<dcterms:available></dcterms:available>
+            <dcterms:publisher></dcterms:publisher>
+        </Description>
+    </Annotation>
+    <Identification>
+        <ShortName>bygningstype</ShortName>
+        <Version>1.0.0</Version>
+        <CanonicalUri>uuid:7da0959e-5b6e-4486-afe7-71ba110634fa</CanonicalUri>
+        <CanonicalVersionUri>uri:ec8e70fe-101c-453c-a4ab-eb9da452c584</CanonicalVersionUri>
+		<LocationUri>https://sti/til/v1.0.0.kortnavn.gc</LocationUri>
+        <AlternateFormatLocationUri MimeType="text/csv">https://sti/til/v1.0.0.kortnavn.csv</AlternateFormatLocationUri>
+        <AlternateFormatLocationUri MimeType="text/html">https://sti/til/v1.0.0.kortnavn.html</AlternateFormatLocationUri>
+        <Agency>
+            <LongName>Klimadatastyrelsen</LongName>
+        </Agency>
+    </Identification>
+    <ColumnSet>
+        <Column
+            Id="kode"
+            Use="required">
+            <Annotation>
+                <Description>
+                    <dcterms:description>tilladt værdi i data</dcterms:description>
+                </Description>
+            </Annotation>
+            <ShortName>kode</ShortName>
+            <Data Type="string" />
+        </Column>
+        <Column
+            Id="definition"
+            Use="optional">
+            <Annotation>
+                <Description>
+                    <dcterms:description>kort beskrivelse eller formel forklaring af kodens betydning</dcterms:description>
+                </Description>
+            </Annotation>
+            <ShortName>definition</ShortName>
+            <Data
+                Type="string"
+                Lang="da" />
+        </Column>
+        <Column
+            Id="kommentar"
+            Use="optional">
+            <Annotation>
+                <Description>
+                    <dcterms:description>kommentar som hjælper til afklaring af forståelse af koden</dcterms:description>
+                </Description>
+            </Annotation>
+            <ShortName>kommentar</ShortName>
+            <Data
+                Type="string"
+                Lang="da" />
+        </Column>
+        <Column
+            Id="navn"
+            Use="required">
+            <Annotation>
+                <Description>
+                    <dcterms:description>foretrukne term for koden</dcterms:description>
+                </Description>
+            </Annotation>
+            <ShortName>navn</ShortName>
+            <Data
+                Type="string"
+                Lang="da" />
+        </Column>
+        <Column
+            Id="virkningFra"
+            Use="required">
+            <Annotation>
+                <Description>
+                    <dcterms:description>tidspunkt for hvornår koden må tages i anvendelse for nye registreringer</dcterms:description>
+                </Description>
+            </Annotation>
+            <ShortName>virkningFra</ShortName>
+            <Data Type="date" />
+        </Column>
+        <Column
+            Id="virkningTil"
+            Use="optional">
+            <Annotation>
+                <Description>
+                    <dcterms:description>tidspunkt for hvornår koden ikke længere må anvendes i nye registreringer. Koden kan eksistere i data, der er registreret før dette tidspunkt</dcterms:description>
+                </Description>
+            </Annotation>
+            <ShortName>virkningTil</ShortName>
+            <Data Type="date" />
+        </Column>
+        <Key Id="key_code">
+            <ShortName>key_code</ShortName>
+            <ColumnRef Ref="kode" />
+        </Key>
+        <Key Id="key_navn">
+            <ShortName>key_navn</ShortName>
+            <ColumnRef Ref="navn" />
+        </Key>
+    </ColumnSet>
+    <SimpleCodeList>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>andenBygning</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition" />
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>anden bygning</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-02</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil">
+                <SimpleValue>2025-01-03</SimpleValue>
+            </Value>
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>bosted</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Botilbud eller plejecenter for borgere, som har særlige omsorgsbehov, herunder også ældreboliger.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>bosted</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>butikscenter</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>En eller flere bygninger, hvor mange butikker er samlet</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>butikscenter</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-02-22</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>daginstitution</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Institution, hvor børn bliver passet eller kan opholde sig om dagen</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar">
+                <SimpleValue>Fx vuggestue, børnehave, fritidshjem</SimpleValue>
+            </Value>
+            <Value ColumnRef="navn">
+                <SimpleValue>daginstitution</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>feriecenter</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Gruppe af huse, ferielejligheder e.l. med fælles administration, evt. også fællesfaciliteter og aktivitetstilbud.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>feriecenter</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>forsamlingshus</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>forsamlingshus</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+    </SimpleCodeList>
+</gc:CodeList>

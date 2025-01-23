@@ -2,29 +2,176 @@
 <x:description
     xmlns:x="http://www.jenitennison.com/xslt/xspec"
     xmlns:gc="http://docs.oasis-open.org/codelist/ns/genericode/1.0/"
-    schematron="../../../main/xml/schemas/schematron/genericode-additional-rules.sch">
+    schematron="../../../main/xml/schemas/schematron/genericode-additional-rules.sch"
+	run-as="external">
     
-    <x:scenario label="Wrong document type">
-        <x:context href="../data/genericode-additional-rules/code-list-set.gc" />
-        <x:scenario label="Document rules violations">
-            <x:expect-assert id="codelist" count="1" />
-        </x:scenario>
-    </x:scenario>
-    
-    <x:scenario label="Code list full of errors">
-        <x:context href="../data/genericode-additional-rules/code-list-with-errors.gc" />
-        <x:scenario label="Document rules violations">
-            <x:expect-assert id="codelist_additional_metadata" count="1" />
-            <x:expect-assert id="semver" count="1" />
-        </x:scenario>
-    </x:scenario>
+    <!-- run-as="external" must be present on x:description,
+    otherwise the following error will occur:
+    XPDY0002  Finding root of tree: the context item is absent
+    In the error message, the variable availableColumns and/or requiredColumns will be
+    mentioned.
+    See also https://www.oxygenxml.com/forum/common-problems/topic24076.html
+    and https://github.com/xspec/xspec/wiki/External-Transformation -->
     
     <x:scenario label="Danish template">
         <x:context href="../../../../templates/template_da.gc" />
         <x:scenario label="Additional rules compliance">
-            <x:expect-not-assert id="codelist_additional_metadata" />
-            <x:expect-not-assert id="semver" />
+			<x:expect-not-assert id="document_codelist" />
+			<x:expect-not-assert id="codelist_annotation_present" />
+            <x:expect-not-assert id="codelist_metadata_description_present" />
+            <x:expect-not-assert id="identification_version_match_semver" />
+			<x:expect-not-assert id="metadata_description_present" />
+			<x:expect-not-assert id="metadata_provenance_present" />
+			<x:expect-not-assert id="metadata_language_present" />
+			<x:expect-not-assert id="metadata_license_present" />
+			<x:expect-not-assert id="metadata_description_not_empty" />
+			<x:expect-not-assert id="metadata_provenance_not_empty" />
+			<x:expect-not-assert id="metadata_language_not_empty" />
+			<x:expect-not-assert id="metadata_license_match_hyperlink" />
+			<x:expect-not-assert id="metadata_source_match_hyperlink" />
+			<x:expect-not-assert id="identification_shortname_not_empty" />
+			<x:expect-not-assert id="identification_shortname_lower_case" />
+			<x:expect-not-assert id="identification_shortname_not_special_characters" />
+			<x:expect-not-assert id="identification_canonicaluri_match_uuid" />
+			<x:expect-not-assert id="identification_canonicalversionuri_match_uuid" />
+			<x:expect-not-assert id="canonicaluri_and_canonicalversionuri_not_identical" />
+			<x:expect-not-assert id="identification_longname_not_empty" />
+			<x:expect-not-assert id="identification.canonuri.eq.canonveruri" />
+			<x:expect-not-assert id="identification_agency_only_have_longname" />
+			<x:expect-not-assert id="row_virkningfra_format_as_date" />
+			<x:expect-not-assert id="row_virkningtil_format_as_date" />
+			<x:expect-not-assert id="row_virkningtil_date_after_virkningfra" />
+			<x:expect-not-assert id="row_virkningfra_not_empty" />
+			<x:expect-not-assert id="row_value_count_equals_column_count" />
+			<x:expect-not-assert id="row_value_order_equals_column_order" />
+			<x:expect-not-assert id="identification_agency_longname_present" />
+			<x:expect-not-assert id="column_id_equals_column_shortname" />
         </x:scenario>
     </x:scenario>
+	
+    <x:scenario label="alternate correct codelist">
+        <x:context href="../data/genericode-additional-rules/example_codelist.gc" />
+        <x:scenario label="Additional rules compliance2">
+			<x:expect-not-assert id="document_codelist" />
+			<x:expect-not-assert id="codelist_annotation_present" />
+            <x:expect-not-assert id="codelist_metadata_description_present" />
+            <x:expect-not-assert id="identification_version_match_semver" />
+			<x:expect-not-assert id="metadata_description_present" />
+			<x:expect-not-assert id="metadata_provenance_present" />
+			<x:expect-not-assert id="metadata_language_present" />
+			<x:expect-not-assert id="metadata_license_present" />
+			<x:expect-not-assert id="metadata_description_not_empty" />
+			<x:expect-not-assert id="metadata_provenance_not_empty" />
+			<x:expect-not-assert id="metadata_language_not_empty" />
+			<x:expect-not-assert id="metadata_license_match_hyperlink" />
+			<x:expect-not-assert id="metadata_source_match_hyperlink" />
+			<x:expect-not-assert id="identification_shortname_not_empty" />
+			<x:expect-not-assert id="identification_shortname_lower_case" />
+			<x:expect-not-assert id="identification_shortname_not_special_characters" />
+			<x:expect-not-assert id="identification_canonicaluri_match_uuid" />
+			<x:expect-not-assert id="identification_canonicalversionuri_match_uuid" />
+			<x:expect-not-assert id="canonicaluri_and_canonicalversionuri_not_identical" />
+			<x:expect-not-assert id="identification_longname_not_empty" />
+			<x:expect-not-assert id="identification.canonuri.eq.canonveruri" />
+			<x:expect-not-assert id="identification_agency_only_have_longname" />
+			<x:expect-not-assert id="row_virkningfra_format_as_date" />
+			<x:expect-not-assert id="row_virkningtil_format_as_date" />
+			<x:expect-not-assert id="row_virkningtil_date_after_virkningfra" />
+			<x:expect-not-assert id="row_virkningfra_not_empty" />
+			<x:expect-not-assert id="row_value_count_equals_column_count" />
+			<x:expect-not-assert id="row_value_order_equals_column_order" />
+			<x:expect-not-assert id="identification_agency_longname_present" />
+			<x:expect-not-assert id="column_id_equals_column_shortname" />
+        </x:scenario>
+    </x:scenario>
+
+    <x:scenario label="Wrong document type">
+        <x:context href="../data/genericode-additional-rules/code_list_set.gc" />
+        <x:scenario label="Incorrect document type">
+            <x:expect-assert id="document_codelist" count="1" />
+        </x:scenario>
+    </x:scenario>
+	
+	<x:scenario label="Code list with structuring errors">
+        <x:context href="../data/genericode-additional-rules/structural_errors.gc" />
+        <x:scenario label="structural row-to-column errors">
+			<x:expect-assert id="row_value_count_equals_column_count" count="5" />
+			<x:expect-assert id="row_value_order_equals_column_order" count="5" />
+			<x:expect-assert id="column_id_equals_column_shortname" count="1" />
+        </x:scenario>
+    </x:scenario>
+    
+	<x:scenario label="Code list without annotation">
+        <x:context href="../data/genericode-additional-rules/annotation_missing.gc" />
+        <x:scenario label="Annotation not added to document">
+            <x:expect-assert id="codelist_annotation_present" count="1" />
+			<x:expect-assert id="codelist_metadata_description_present" count="1" />
+        </x:scenario>
+    </x:scenario>
+	
+	<x:scenario label="Missing annotation fields">
+        <x:context href="../data/genericode-additional-rules/annotation_fields_missing.gc" />
+        <x:scenario label="Required annonation fields are not filled">
+			<x:expect-assert id="metadata_description_present" count="1" />
+			<x:expect-assert id="metadata_provenance_present" count="1" />
+			<x:expect-assert id="metadata_language_present" count="1" />
+			<x:expect-assert id="metadata_license_present" count="1" />
+        </x:scenario>
+    </x:scenario>
+	
+    <x:scenario label="Code list Annotation with empty values">
+        <x:context href="../data/genericode-additional-rules/annotation_fields_empty.gc" />
+        <x:scenario label="Required annonation fields are not filled">
+			<x:expect-assert id="metadata_description_not_empty" count="1" />
+			<x:expect-assert id="metadata_provenance_not_empty" count="1" />
+			<x:expect-assert id="metadata_language_not_empty" count="1" />
+			<x:expect-assert id="metadata_license_match_hyperlink" count="1" />
+			<x:expect-not-assert id="metadata_source_match_hyperlink" />
+        </x:scenario>
+    </x:scenario>
+	
+	<x:scenario label="Code List Identification with empty values">
+        <x:context href="../data/genericode-additional-rules/identification_required_fields_empty.gc" />
+        <x:scenario label="Required Identification fields are not filled">
+			<x:expect-assert id="identification_shortname_not_empty" count="1" />
+			<x:expect-assert id="identification_version_match_semver" count="1" />
+			<x:expect-assert id="identification_canonicaluri_match_uuid" count="1" />
+			<x:expect-assert id="identification_canonicalversionuri_match_uuid" count="1" />
+			<x:expect-assert id="canonicaluri_and_canonicalversionuri_not_identical" count="1" />
+			<x:expect-assert id="identification_longname_not_empty" count="1" />
+        </x:scenario>
+    </x:scenario>
+	
+	<x:scenario label="Code List Identification errors Case:1">
+		<x:context href="../data/genericode-additional-rules/identification_errors1.gc" />
+		<x:scenario label="Multiple Identification errors">
+			<x:expect-assert id="identification_agency_longname_present" count="1" />
+			<x:expect-assert id="identification_agency_only_have_longname" count="1" />
+			<x:expect-assert id="identification_version_match_semver" count="1" />
+			<x:expect-assert id="identification_shortname_lower_case" count="1" />
+			<x:expect-assert id="identification_shortname_not_special_characters" count="1" />
+			<x:expect-assert id="canonicaluri_and_canonicalversionuri_not_identical" count="1" />
+		</x:scenario>
+	</x:scenario>
+	
+	<x:scenario label="Code list Identification errors Case:2">
+        <x:context href="../data/genericode-additional-rules/identification_errors2.gc" />
+        <x:scenario label="Multiple Identification errors that conflict with tests in the first document">
+            <x:expect-assert id="identification_version_match_semver" count="1" />
+			<x:expect-assert id="identification_shortname_not_special_characters" count="1" />
+			<x:expect-assert id="identification_canonicaluri_match_uuid" count="1" />
+			<x:expect-assert id="identification_canonicalversionuri_match_uuid" count="1" />
+        </x:scenario>
+    </x:scenario>
+	
+	<x:scenario label="Code list SimpleCodeList errors">
+		<x:context href="../data/genericode-additional-rules/SimpleCodeList_errors.gc" />
+		<x:scenario label="Multiple error cases in code section under SimpleCodeList">
+			<x:expect-assert id="row_virkningfra_format_as_date" count="5" />
+			<x:expect-assert id="row_virkningtil_format_as_date" count="4" />
+			<x:expect-assert id="row_virkningtil_date_after_virkningfra" count="2" />
+			<x:expect-assert id="row_virkningfra_not_empty" count="2" />
+		</x:scenario>
+	</x:scenario>
 
 </x:description>
