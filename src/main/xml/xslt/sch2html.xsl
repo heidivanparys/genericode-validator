@@ -67,6 +67,7 @@
             <table>
                 <thead>
                     <tr>
+                        <th>Severity</th>
                         <th>Rule</th>
                     </tr>
                 </thead>
@@ -75,9 +76,19 @@
                         <xsl:variable
                             name="context"
                             select="@context" />
-                        <xsl:for-each select="sch:assert">
+                        <xsl:for-each select="sch:assert|sch:report">
                             <tr>
                                 <xsl:call-template name="addId" />
+                                <td>
+                                    <xsl:choose>
+                                        <xsl:when test="exists(@role)">
+                                            <xsl:value-of select="@role" />
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:value-of select="'error'" />
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                </td>
                                 <td>
                                     <xsl:value-of select="." />
                                 </td>
