@@ -3,7 +3,7 @@
     xmlns:p="http://www.w3.org/ns/xproc"
     xmlns:err="http://www.w3.org/ns/xproc-error"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    xmlns:p2="urn:uuid:5b27ab71-7824-48c1-a739-a5f6e0cea60f"
+    xmlns:gv="urn:uuid:54458f97-a354-46fe-b0ec-6d7a009d0e7a"
     name="validate-genericode-html"
     version="3.0">
 
@@ -37,13 +37,13 @@
         select="false()"
         static="true" />
 
-    <p2:validate-genericode-xvrl
+    <gv:validate-genericode-xvrl
         name="validate-genericode-xvrl"
         p:message="Validate genericode document and create XVRL report">
         <p:with-option
             name="assert-valid"
             select="$assert-valid" />
-    </p2:validate-genericode-xvrl>
+    </gv:validate-genericode-xvrl>
 
     <p:store
         name="store-xvrl-report"
