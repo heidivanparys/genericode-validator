@@ -10,5 +10,13 @@
     <xsl:variable
         name="designsystemUrl"
         select="'https://cdn.dataforsyningen.dk/assets/designsystem/v' || $designsystemVersion" />
+        
+    <xsl:template name="addId">
+        <xsl:if test="exists(@id)">
+            <xsl:attribute
+                name="id"
+                select="@id" />
+        </xsl:if>
+    </xsl:template>
 
 </xsl:stylesheet>

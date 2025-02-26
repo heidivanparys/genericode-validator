@@ -106,14 +106,6 @@
         </p>
     </xsl:template>
 
-    <xsl:template name="addId">
-        <xsl:if test="exists(@id)">
-            <xsl:attribute
-                name="id"
-                select="@id" />
-        </xsl:if>
-    </xsl:template>
-
     <xsl:template name="addIdAndTitle">
         <xsl:call-template name="addId" />
         <xsl:choose>
