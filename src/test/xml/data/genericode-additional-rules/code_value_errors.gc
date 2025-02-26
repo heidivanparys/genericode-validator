@@ -1,0 +1,987 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gc:CodeList
+    xmlns:gc="http://docs.oasis-open.org/codelist/ns/genericode/1.0/"
+    xmlns:dcterms="http://purl.org/dc/terms/">
+    <Annotation>
+        <Description>
+            <dcterms:description>beskrivelse</dcterms:description>
+            <dcterms:provenance>provenance</dcterms:provenance> 
+            <dcterms:language>da</dcterms:language>
+            <dcterms:license>http://creativecommons.org/licenses/by/4.0/deed.da</dcterms:license>
+			<dcterms:source></dcterms:source>
+			<dcterms:available>2024-08-16</dcterms:available> 
+            <dcterms:publisher>Udgiver</dcterms:publisher>
+        </Description>
+    </Annotation>
+    <Identification>
+        <ShortName>bygningstype</ShortName>
+        <Version>1.0.0</Version>
+        <CanonicalUri>urn:uuid:7da0959e-5b6e-4486-afe7-71ba110634fa</CanonicalUri>
+        <CanonicalVersionUri>urn:uuid:ec8e70fe-101c-453c-a4ab-eb9da452c584</CanonicalVersionUri>
+		<LocationUri>https://sti/til/v1.0.0.kortnavn.gc</LocationUri>
+        <AlternateFormatLocationUri MimeType="text/csv">https://sti/til/v1.0.0.kortnavn.csv</AlternateFormatLocationUri>
+        <AlternateFormatLocationUri MimeType="text/html">https://sti/til/v1.0.0.kortnavn.html</AlternateFormatLocationUri>
+        <Agency>
+            <LongName>Klimadatastyrelsen</LongName>
+        </Agency>
+    </Identification>
+    <ColumnSet>
+        <Column
+            Id="kode"
+            Use="required">
+            <Annotation>
+                <Description>
+                    <dcterms:description>tilladt værdi i data</dcterms:description>
+                </Description>
+            </Annotation>
+            <ShortName>kode</ShortName>
+            <Data Type="string" />
+        </Column>
+        <Column
+            Id="definition"
+            Use="optional">
+            <Annotation>
+                <Description>
+                    <dcterms:description>kort beskrivelse eller formel forklaring af kodens betydning</dcterms:description>
+                </Description>
+            </Annotation>
+            <ShortName>definition</ShortName>
+            <Data
+                Type="string"
+                Lang="da" />
+        </Column>
+        <Column
+            Id="kommentar"
+            Use="optional">
+            <Annotation>
+                <Description>
+                    <dcterms:description>kommentar som hjælper til afklaring af forståelse af koden</dcterms:description>
+                </Description>
+            </Annotation>
+            <ShortName>kommentar</ShortName>
+            <Data
+                Type="string"
+                Lang="da" />
+        </Column>
+        <Column
+            Id="navn"
+            Use="required">
+            <Annotation>
+                <Description>
+                    <dcterms:description>foretrukne term for koden</dcterms:description>
+                </Description>
+            </Annotation>
+            <ShortName>navn</ShortName>
+            <Data
+                Type="string"
+                Lang="da" />
+        </Column>
+        <Column
+            Id="virkningFra"
+            Use="required">
+            <Annotation>
+                <Description>
+                    <dcterms:description>tidspunkt for hvornår koden må tages i anvendelse for nye registreringer</dcterms:description>
+                </Description>
+            </Annotation>
+            <ShortName>virkningFra</ShortName>
+            <Data Type="date" />
+        </Column>
+        <Column
+            Id="virkningTil"
+            Use="optional">
+            <Annotation>
+                <Description>
+                    <dcterms:description>tidspunkt for hvornår koden ikke længere må anvendes i nye registreringer. Koden kan eksistere i data, der er registreret før dette tidspunkt</dcterms:description>
+                </Description>
+            </Annotation>
+            <ShortName>virkningTil</ShortName>
+            <Data Type="date" />
+        </Column>
+        <Key Id="key_code">
+            <ShortName>key_code</ShortName>
+            <ColumnRef Ref="kode" />
+        </Key>
+        <Key Id="key_navn">
+            <ShortName>key_navn</ShortName>
+            <ColumnRef Ref="navn" />
+        </Key>
+    </ColumnSet>
+    <SimpleCodeList>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>code@symbol</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition" />
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>anden bygning</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-02</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil">
+                <SimpleValue>2025-01-03</SimpleValue>
+            </Value>
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>code#symbol</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Botilbud eller plejecenter for borgere, som har særlige omsorgsbehov, herunder også ældreboliger.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>bosted</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>code^symbol</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>En eller flere bygninger, hvor mange butikker er samlet</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>butikscenter</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-02-22</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>code$symbol</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Institution, hvor børn bliver passet eller kan opholde sig om dagen</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar">
+                <SimpleValue>Fx vuggestue, børnehave, fritidshjem</SimpleValue>
+            </Value>
+            <Value ColumnRef="navn">
+                <SimpleValue>daginstitution</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>code!symbol</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Gruppe af huse, ferielejligheder e.l. med fælles administration, evt. også fællesfaciliteter og aktivitetstilbud.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>feriecenter</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>code~symbol</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>forsamlingshus</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>code`symbol</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Institution, der varetager forskning inden for et bestemt fagområde.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>forskningscenter</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>code?symbol</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Bygning til forvaring af personer, der er idømt frihedsstraf.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>fængsel</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>code}symbol</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Ejendom typisk bestående af stuehus, stald og lade.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>gård</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>code{symbol</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Stor og højloftet bygning til idræt eller arrangementer. </SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>hal</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>code[symbol</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>En oftest større gård, der oprindeligt tilhørte en herre, dvs. en adelsmand.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>herregård</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>code]symbol</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Større bygning eller bygningskompleks, hvor syge og i reglen sengeliggende personer kan opholde sig og få behandling og pleje af læger, sygeplejersker m.m.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>hospital</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>code\symbol</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Bygning eller bygningskompleks, hvor man mod betaling kan bo på et værelse og evt. spise. Hoteller har som regel fællesfaciliteter, opholdsrum o.l.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar">
+                <SimpleValue>Der skelnes mellem CVR-navn og stednavnet i folkemunde. DS vil registrere folkemundemodellen, hvis den er udbredt.</SimpleValue>
+            </Value>
+            <Value ColumnRef="navn">
+                <SimpleValue>hotel</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>code/symbol</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Selvstændig bygning som bruges til beboelse.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>hus</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>code*symbol</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Bygning indrettet og beregnet til afholdelse af kristen gudstjeneste.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar">
+                <SimpleValue>Herunder både folkekirke og frikirke</SimpleValue>
+            </Value>
+            <Value ColumnRef="navn">
+                <SimpleValue>kirke</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>code"symbol</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Bygning, som rummer boliger til unge under uddannelse.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>kollegium</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>code;symbol</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Bygning, hvor den kommunale forvaltning arbejder, og hvor kommunens borgere kan henvende sig.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>kommunekontor</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue> kursuscenter</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Større bygning eller anlæg til afholdelse af konferencer/kurser. </SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>kursuscenter</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>,kystredningsstation</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Opbevaringssted for redningsbåde og andet redningsudstyr til redning på havet.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>kystredningsstation</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>lejrskoleSpejderhytte </SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Bygning, oftest i landlige omgivelser, typisk med sovesal. Anvendes til lejre, udflugter mm.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>lejrskole spejderhytte</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>moske,</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Muslimsk bedehus</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>moske</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>møl  le</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Mølle, der drives af vindkraft. </SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar">
+                <SimpleValue>Møllen er ikke nødvendigvis komplet og i drift. Møller anvendes i dag ofte til beboelse.</SimpleValue>
+            </Value>
+            <Value ColumnRef="navn">
+                <SimpleValue>mølle</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>natur&#x9;center</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Bygning, hvor der tilbydes naturformidling og evt. overnatningsfaciliteter for besøgende.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>naturcenter</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>natur&#xA0;center</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Bygning, hvor der tilbydes naturformidling og evt. overnatningsfaciliteter for besøgende.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>naturcenter</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>paragraph&#x2029;seperator</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Bygning, hvor der tilbydes naturformidling og evt. overnatningsfaciliteter for besøgende.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>naturcenter</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>line&#x2028;seperator</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Bygning, hvor der tilbydes naturformidling og evt. overnatningsfaciliteter for besøgende.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>naturcenter</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>observ
+                atorium</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Bygning, hvor der foretages astronomiske, meteorologiske eller andre observationer.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>observatorium</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>parkerings hus</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Bygning beregnet til parkering af køretøjer.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>parkeringshus</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>politistation</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Bygning, hvor politiet har kontor.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>politistation</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>politi'station1</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Bygning, hvor politiet har kontor.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>politistation</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>politi&#x3C;station2</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Bygning, hvor politiet har kontor.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>politistation</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>politi&#x3E;station3</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Bygning, hvor politiet har kontor.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>politistation</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>politi-station4</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Bygning, hvor politiet har kontor.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>politistation</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+         <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>politi&#xA;station5</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Bygning, hvor politiet har kontor.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>politistation</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>/politistation6</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Bygning, hvor politiet har kontor.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>politistation</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>politistation7/</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>Bygning, hvor politiet har kontor.</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>politistation</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>=test1</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>en testkode</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>test</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>&#x3C;test2</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>en testkode</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>test</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>&#x3E;test3</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>en testkode</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>test</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>test4)</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>en testkode</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>test</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>test5-</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>en testkode</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>test</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>teΩst6</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>en testkode</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>test</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>tαest7</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>en testkode</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>test</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>tesβt8</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>en testkode</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>test</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>tes+t9</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>en testkode</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>test</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>tesét10</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>en testkode</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>test</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>te(st11</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>en testkode</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>test</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>tes%t12</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>en testkode</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>test</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>te&#x26;st13</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>en testkode</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>test</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>te,st14</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>en testkode</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>test</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>te.st15</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>en testkode</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>test</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>te/st16</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>en testkode</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>test</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>te:st17</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>en testkode</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>test</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+        <Row>
+            <Value ColumnRef="kode">
+                <SimpleValue>te§st18</SimpleValue>
+            </Value>
+            <Value ColumnRef="definition">
+                <SimpleValue>en testkode</SimpleValue>
+            </Value>
+            <Value ColumnRef="kommentar" />
+            <Value ColumnRef="navn">
+                <SimpleValue>test</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningFra">
+                <SimpleValue>2025-01-01</SimpleValue>
+            </Value>
+            <Value ColumnRef="virkningTil" />
+        </Row>
+    </SimpleCodeList>
+</gc:CodeList>
