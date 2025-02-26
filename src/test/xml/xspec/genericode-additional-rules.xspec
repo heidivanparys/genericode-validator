@@ -193,7 +193,10 @@
 	<x:scenario label="Code list code value errors">
 		<x:context href="../data/genericode-additional-rules/code_value_errors.gc" />
 		<x:scenario label="The code values have symbols and whitespaces that does not conform to the schematron rules">
-			<x:expect-assert id="row_code_simplevalue_separators" count="2" />
+			<x:expect-assert id="row_code_simplevalue_separators" count="3" />
+			<x:expect-assert id="row_code_simplevalue_separators" location="//Row[24]/Value[@ColumnRef='kode']/SimpleValue" />
+			<x:expect-assert id="row_code_simplevalue_separators" location="//Row[25]/Value[@ColumnRef='kode']/SimpleValue" />
+			<x:expect-assert id="row_code_simplevalue_separators" location="//Row[26]/Value[@ColumnRef='kode']/SimpleValue" />
 			<x:expect-assert id="row_code_simplevalue_consecutive_spaces" count="2"/>
 			<x:expect-assert id="row_code_simplevalue_control_character" count="3" />
 			<x:expect-assert id="row_code_simplevalue_leading_space" count="1" />

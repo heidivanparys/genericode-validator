@@ -488,7 +488,7 @@
         </Row>
         <Row>
             <Value ColumnRef="kode">
-                <SimpleValue>natur&#xA0;center</SimpleValue>
+                <SimpleValue>no-break&#xA0;space</SimpleValue>
             </Value>
             <Value ColumnRef="definition">
                 <SimpleValue>Bygning, hvor der tilbydes naturformidling og evt. overnatningsfaciliteter for besøgende.</SimpleValue>
