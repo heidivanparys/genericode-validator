@@ -14,6 +14,9 @@
     <ns
         prefix="gc"
         uri="http://docs.oasis-open.org/codelist/ns/genericode/1.0/" />
+	<ns
+        prefix="xs"
+        uri="http://www.w3.org/2001/XMLSchema" />
 		
 	<let name="availableColumns" value="/*/ColumnSet/Column"/>
 	<let name="countOfColumns" value="count($availableColumns)"/>
@@ -226,6 +229,60 @@
 	<pattern id="values">
 		<title>Values</title>
 		<p>Rules for values.</p>
+		
+		<rule context="Row/Value[@ColumnRef = 'kode']/SimpleValue">
+			<assert
+				id="row_code_simplevalue_separators"
+				test="not(matches(., '[\p{Z}-[&#x20;]]'))"
+				diagnostics="diag_node_value">
+				A code must not contain separators that are not spaces.
+			</assert>
+			<assert 
+				id="row_code_simplevalue_consecutive_spaces"
+				test="not(matches(., '&#x20;&#x20;'))"
+				diagnostics="diag_node_value">
+				A code must not contain two consecutive spaces.
+			</assert>
+			<assert
+				id="row_code_simplevalue_control_character"
+				test="not(matches(., '[\p{Cc}]'))"
+				diagnostics="diag_node_value">
+				A code must not contain control characters.
+			</assert>
+			<assert
+				id="row_code_simplevalue_leading_space"
+				test="not(matches(., '^&#x20;'))"
+				diagnostics="diag_node_value">
+				A code must not start with space.
+			</assert>
+			<assert
+				id="row_code_simplevalue_ending_space"
+				test="not(matches(., '&#x20;$'))"
+				diagnostics="diag_node_value">
+				A code must not end with space.
+			</assert>
+			<report
+				id="row_code_simplevalue_report_starting_character"
+				test="not(matches(., '^[a-zA-Z0-9æøåéÆØÅÉ&#x3C;&#x3E;=]'))"
+				role="warning"
+				diagnostics="diag_node_value">
+				A code is found to begin with a character that is not in the recommended set [a-zA-Z0-9æøåéÆØÅÉ=&#x3C;&#x3E;].
+			</report>
+			<report
+				id="row_code_simplevalue_report_ending_character"
+				test="not(matches(., '[a-zA-Z0-9æøåéÆØÅÉ)-]$'))"
+				role="warning"
+				diagnostics="diag_node_value">
+				A code is found to end with a character that is not in the recommended set [a-zA-Z0-9æøåéÆØÅÉ)-].
+			</report>
+			<report
+				id="row_code_simplevalue_report_symbol"
+				test="not(matches(., '^[a-zA-Z0-9æøåéÆØÅÉ_,.&#x3C;&#x3E;&#x20;&#x26;Ωαβ/():+=''§%-]+$'))"
+				role="warning"
+				diagnostics="diag_node_value">
+				A code was found to contain discouraged characters. Recommended characters include: digits (0-9), lower and uppercase letters (a-z, æ, ø, å, é), Greek letters (Ω, α, β), mathematical symbols (+, &#x3C;, &#x3E;, =), punctuation marks (-_()%&#x26;',./:§) and spaces.
+			</report>
+		</rule>
 		
 		<rule context="Row/Value[@ColumnRef='virkningFra']/SimpleValue">
 			<!-- without YYYY check, a date of 20251284-02-15 would also be accepted as a castable xs:date and no error is raised -->

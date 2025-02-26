@@ -46,6 +46,14 @@
 			<x:expect-not-assert id="row_value_order_equals_column_order" />
 			<x:expect-not-assert id="identification_agency_longname_present" />
 			<x:expect-not-assert id="column_id_equals_column_shortname" />
+			<x:expect-not-assert id="row_code_simplevalue_separators" />
+			<x:expect-not-assert id="row_code_simplevalue_consecutive_spaces" />
+			<x:expect-not-assert id="row_code_simplevalue_control_character" />
+			<x:expect-not-assert id="row_code_simplevalue_leading_space" />
+			<x:expect-not-assert id="row_code_simplevalue_ending_space" />
+			<x:expect-not-assert id="row_code_simplevalue_report_starting_character" />
+			<x:expect-not-assert id="row_code_simplevalue_report_ending_character" />
+			<x:expect-not-assert id="row_code_simplevalue_report_symbol" />
         </x:scenario>
     </x:scenario>
 	
@@ -82,6 +90,14 @@
 			<x:expect-not-assert id="row_value_order_equals_column_order" />
 			<x:expect-not-assert id="identification_agency_longname_present" />
 			<x:expect-not-assert id="column_id_equals_column_shortname" />
+			<x:expect-not-assert id="row_code_simplevalue_separators" />
+			<x:expect-not-assert id="row_code_simplevalue_consecutive_spaces" />
+			<x:expect-not-assert id="row_code_simplevalue_control_character" />
+			<x:expect-not-assert id="row_code_simplevalue_leading_space" />
+			<x:expect-not-assert id="row_code_simplevalue_ending_space" />
+			<x:expect-not-assert id="row_code_simplevalue_report_starting_character" />
+			<x:expect-not-assert id="row_code_simplevalue_report_ending_character" />
+			<x:expect-not-assert id="row_code_simplevalue_report_symbol" />
         </x:scenario>
     </x:scenario>
 
@@ -171,6 +187,20 @@
 			<x:expect-assert id="row_virkningtil_format_as_date" count="4" />
 			<x:expect-assert id="row_virkningtil_date_after_virkningfra" count="2" />
 			<x:expect-assert id="row_virkningfra_not_empty" count="2" />
+		</x:scenario>
+	</x:scenario>
+	
+	<x:scenario label="Code list code value errors">
+		<x:context href="../data/genericode-additional-rules/code_value_errors.gc" />
+		<x:scenario label="The code values have symbols and whitespaces that does not conform to the schematron rules">
+			<x:expect-assert id="row_code_simplevalue_separators" count="2" />
+			<x:expect-assert id="row_code_simplevalue_consecutive_spaces" count="2"/>
+			<x:expect-assert id="row_code_simplevalue_control_character" count="3" />
+			<x:expect-assert id="row_code_simplevalue_leading_space" count="1" />
+			<x:expect-assert id="row_code_simplevalue_ending_space" count="1" />
+			<x:expect-report id="row_code_simplevalue_report_starting_character" count="3"/>
+			<x:expect-report id="row_code_simplevalue_report_ending_character" count="3"/>
+			<x:expect-report id="row_code_simplevalue_report_symbol" count="22" />
 		</x:scenario>
 	</x:scenario>
 
