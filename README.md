@@ -16,7 +16,7 @@ genericode-validator is a tool for validating genericode files according to:
 
 ## Installation
 
-This tool relies on the presence of Java, the XProc processor Morgana, the XSLT processor Saxon, and the Schematron implementation schxslt:
+This tool relies on the presence of Java, the XProc 3 processor Morgana, the XSLT 3 processor Saxon, and the Schematron implementation schxslt:
 
 - Clone the repository on your local machine, no releases are available at the moment.
 - Ensure you have a Java 8 or Java 11 installation.
@@ -26,20 +26,22 @@ This tool relies on the presence of Java, the XProc processor Morgana, the XSLT 
 
 ## Usage
 
-A validation report for a genericode file is created by processing the genericode file in a pipeline written in [XProc](https://xproc.org/).
+### Configuration
 
-Create a file morgana-config.xml file in folder `local-scripts`. Customise the path in element `path_to_SchXSLT_2`, adjust the value of element `xslt-connector` to match the value specified for your version of Saxon as specified in https://www.xml-project.com/manual/ch02.html#configuration_s1_1_s2_2, and make sure to add a media type mapping for genericode files (*.gc), see https://www.xml-project.com/manual/ch02.html#configuration_s1_5.
+Create a file `morgana-config.xml` file in folder `local-scripts`.
 
 ```xml
 <morgana-config xmlns="http://www.xml-project.com/morganaxproc">	
-	<!-- See "Selecting the XSLTConnector" on https://www.xml-project.com/manual/ch02.html#configuration_s1_1_s2_2 -->
 	<XSLTValidationMode>LAX</XSLTValidationMode>
+	
+	<!-- See "Selecting the XSLTConnector" on https://www.xml-project.com/manual/ch02.html#configuration_s1_1_s2_2 -->
 	<xslt-connector>saxon12-3</xslt-connector>
     
 	<!-- See "Selecting the Schematron processor" on https://www.xml-project.com/manual/ch02.html#configuration_s1_1_s2_5 -->
 	<schematron-connector>schxslt</schematron-connector>
 	<path_to_SchXSLT_2>file:///path/to/schxslt-x.y.z/2.0</path_to_SchXSLT_2>
     
+   <!-- See "Adding media type mappings" on https://www.xml-project.com/manual/ch02.html#configuration_s1_5 -->
 	<mediatype-mapping>
 		<map file-extension="gc" media-type="application/xml" />
 	</mediatype-mapping>	
@@ -47,13 +49,24 @@ Create a file morgana-config.xml file in folder `local-scripts`. Customise the p
 </morgana-config>
 ```
 
-Create a batch file `validate-genericode-html.bat` in folder `local-scripts` as follows, adjust the paths to the input and output:
+Customize `morgana-config.xml`:
+
+* Customise the value of element `xslt-connector` to match the value specified for your version of Saxon as specified in https://www.xml-project.com/manual/ch02.html#configuration_s1_1_s2_2;
+* Customise the path in element `path_to_SchXSLT_2`.
+
+### Validating genericode files
+
+A validation report for a genericode file is created by processing the genericode file in an [XProc 3](https://xproc.org/) pipeline.
+
+Create a batch file `validate-genericode-html.bat` in folder `local-scripts` as follows, update the paths to the input and output:
 
 ```bat
-Morgana -config=local-scripts\morgana-config.xml src\main\xml\xproc\validate-genericode-html.xpl -input:source="C:\path\to\genericode-file.gc" -output:result="C:\path\to\report.html" -option:assert-valid=false
+Morgana -config=local-scripts\morgana-config.xml src\main\xml\xproc\validate-genericode-html.xpl -input:source="C:\path\to\genericode-file.gc" -output:result="C:\path\to\report.html"
 ```
 
-Run `validate-genericode-html.bat` from the root directory of the repository:
+Several genericode files can be validated at once by adding more similar lines, with other paths for the input and input.
+
+Run `validate-genericode-html.bat` from the _root directory_ of the repository:
 
 ```bat
 local-scripts\validate-genericode-html.bat
@@ -61,15 +74,38 @@ local-scripts\validate-genericode-html.bat
 
 Open report.html in a browser.
 
+
 ## Development
 
 ### Running the tests
 
-On Windows, the XSpec Schematron tests can run using the batch files in the [scripts folder](/scripts). Run the batch files from the root directory of the repository, for instance:
+On Windows, the [XSpec](https://github.com/xspec/xspec/) Schematron tests can run using the batch file in the [scripts folder](/scripts). Run the batch file from the _root directory_ of the repository:
 
 ```bat
 scripts\run-schematron-tests.bat
 ```
 
+### Creating the validation rules documentation
 
+HTML files containing the documentation of the validation rules is created by means of an [XProc 3](https://xproc.org/) pipeline.
 
+Create a batch file `generate-docs.bat` in folder `local-scripts` as follows, update the paths to the input and output:
+
+```bat
+Morgana -config=local-scripts\morgana-config.xml src\main\xml\xproc\generate-docs.xpl
+```
+
+Run `generate-docs.bat` from the _root directory_ of the repository:
+
+```bat
+local-scripts\validate-genericode-html.bat
+```
+
+> [!CAUTION]
+> The following procedure must be followed for submitting the HTML files in the `docs` folder:
+> 1. Make your local `main` and `gh-pages` branches up-to-date with the corresponding branches in the central repository;
+> 2. Create a new local branch that has branch `gh-pages` as start point and check that new branch out;
+> 3. Merge branch `main` into the newly created branch: `git merge main`;
+> 4. Run `generate-docs.bat`;
+> 5. Commit the files in the `docs` folder and push your changes to your fork;
+> 6. Create a pull request that is based on the central repository's `gh-pages` branch.

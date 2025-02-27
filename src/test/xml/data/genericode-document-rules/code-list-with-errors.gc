@@ -18,17 +18,49 @@
         <Column
             Id="code"
             Use="required">
-            <ShortName>kode </ShortName>
+            <ShortName>code </ShortName>
             <Data Type="xsd:string" />
         </Column>
         <Column
             Id="name"
             Use="required">
-            <ShortName>navn </ShortName>
+            <ShortName>name </ShortName>
             <Data
                 Type="xsd:string"
                 Lang="en" />
         </Column>
     </ColumnSet>
-    <SimpleCodeList />
+    <SimpleCodeList>
+        <Row>
+            <Value ColumnRef="code">
+                <SimpleValue>123</SimpleValue>
+            </Value>
+            <Value ColumnRef="name">
+                <SimpleValue>A value</SimpleValue>
+            </Value>
+        </Row>
+        <Row>
+            <Value ColumnRef="code">
+                <SimpleValue>456</SimpleValue>
+            </Value>
+        </Row>
+        <Row>
+            <Value ColumnRef="code" />
+            <Value ColumnRef="name" />
+        </Row>
+        <Row>
+            <Value ColumnRef="code">
+                <SimpleValue>789</SimpleValue>
+            </Value>
+            <Value ColumnRef="code">
+                <SimpleValue>789</SimpleValue>
+            </Value>
+            <Value ColumnRef="name">
+                <SimpleValue>Another value</SimpleValue>
+            </Value>
+            <Value ColumnRef="name">
+                <SimpleValue>Another value</SimpleValue>
+            </Value>
+        </Row>
+    </SimpleCodeList>
 </gc:CodeList>

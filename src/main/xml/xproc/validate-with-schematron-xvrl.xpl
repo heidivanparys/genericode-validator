@@ -3,8 +3,8 @@
     xmlns:p="http://www.w3.org/ns/xproc"
     xmlns:err="http://www.w3.org/ns/xproc-error"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    xmlns:p1="urn:uuid:54458f97-a354-46fe-b0ec-6d7a009d0e7a"
-    type="p1:validate-with-schematron-xvrl"
+    xmlns:gv="urn:uuid:54458f97-a354-46fe-b0ec-6d7a009d0e7a"
+    type="gv:validate-with-schematron-xvrl"
     version="3.0">
 
     <p:documentation>This step applies Schematron processing to the source document

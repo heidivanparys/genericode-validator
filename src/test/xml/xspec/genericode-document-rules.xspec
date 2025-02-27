@@ -18,6 +18,11 @@
             <x:expect-assert id="rule_1" count="1" />
             <x:expect-assert id="rule_19" count="2" />
             <x:expect-assert id="rule_39" count="3" />
+            <x:expect-assert id="rule_37" count="2" />
+            <x:expect-assert id="rule_37" location="//Row[2]" />
+            <x:expect-assert id="rule_37" location="//Row[3]" />
+            <x:expect-assert id="one_value_per_column" count="1" />
+            <x:expect-assert id="one_value_per_column" location="//Row[4]" />
         </x:scenario>
     </x:scenario>
     
@@ -34,6 +39,7 @@
             <x:expect-not-assert id="rule_39" />
             <x:expect-not-assert id="rule_42" />
             <x:expect-not-assert id="rule_43" />
+            <x:expect-not-assert id="one_value_per_column" />
         </x:scenario>
     </x:scenario>
 

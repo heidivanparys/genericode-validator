@@ -20,6 +20,10 @@
     <xsl:mode on-no-match="shallow-copy" />
 
     <xsl:include href="common-html.xsl" />
+    
+    <xsl:variable
+        name="title"
+        select="'Validation for genericode files'" />
 
     <xsl:template match="/sch:schema">
         <html lang="en">
@@ -35,6 +39,20 @@
                         name="href"
                         select="$designsystemUrl || '/designsystem.css'" />
                 </link>
+                <link rel="icon">
+                    <xsl:attribute
+                        name="href"
+                        select="$designsystemUrl || '/logo-small.svg'" />
+                </link>
+                <script type="module">
+                    import {
+                    DSLogo,
+                    DSLogoTitle
+                    } from
+                    <xsl:value-of select="' '' ' || $designsystemUrl || '/designsystem.js '' '" />
+                    customElements.define('ds-logo', DSLogo)
+                    customElements.define('ds-logo-title', DSLogoTitle)
+                </script>
                 <style>
                     section + section, section section {margin-top: var(--space-md)}
                     h2 span::first-letter{text-transform: uppercase}
@@ -45,6 +63,14 @@
             <body>
                 <header class="ds-header">
                     <div class="ds-container">
+                        <ds-logo-title>
+                            <xsl:attribute
+                                name="title"
+                                select="$title" />
+                            <xsl:attribute
+                                name="byline"
+                                select="$organisation" />
+                        </ds-logo-title>
                         <h1>
                             <xsl:call-template name="addIdAndTitle" />
                         </h1>
@@ -67,6 +93,7 @@
             <table>
                 <thead>
                     <tr>
+                        <th>Severity</th>
                         <th>Rule</th>
                     </tr>
                 </thead>
@@ -75,9 +102,19 @@
                         <xsl:variable
                             name="context"
                             select="@context" />
-                        <xsl:for-each select="sch:assert">
+                        <xsl:for-each select="sch:assert|sch:report">
                             <tr>
                                 <xsl:call-template name="addId" />
+                                <td>
+                                    <xsl:choose>
+                                        <xsl:when test="exists(@role)">
+                                            <xsl:value-of select="@role" />
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:value-of select="'error'" />
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                </td>
                                 <td>
                                     <xsl:value-of select="." />
                                 </td>
@@ -93,14 +130,6 @@
         <p>
             <xsl:apply-templates select="@*|node()" />
         </p>
-    </xsl:template>
-
-    <xsl:template name="addId">
-        <xsl:if test="exists(@id)">
-            <xsl:attribute
-                name="id"
-                select="@id" />
-        </xsl:if>
     </xsl:template>
 
     <xsl:template name="addIdAndTitle">

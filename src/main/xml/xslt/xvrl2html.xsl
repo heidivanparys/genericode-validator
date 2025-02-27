@@ -15,13 +15,7 @@
 
     <xsl:mode on-no-match="shallow-copy" />
     
-    <xsl:param
-        name="designsystemVersion"
-        select="'8'" />
-
-    <xsl:param
-        name="designsystemUrl"
-        select="'https://cdn.dataforsyningen.dk/assets/designsystem/v' || $designsystemVersion" />
+    <xsl:include href="common-html.xsl" />
 
     <xsl:template match="/xvrl:reports">
         <html lang="en">
@@ -64,6 +58,7 @@
         <section class="ds-container">
             <h2>Summary</h2>
             <table>
+                <caption>Overview</caption>
                 <tr>
                     <th scope="row">Document</th>
                     <td>
@@ -99,107 +94,116 @@
                         <xsl:value-of select="xvrl:metadata/xvrl:title" />
                     </xsl:when>
                     <xsl:when test="xvrl:metadata/xvrl:schema[@schematypens eq 'http://purl.oclc.org/dsdl/schematron']">
-                        <xsl:value-of select="'Schematron validation'" />
+                        <xsl:text>Schematron validation</xsl:text>
                     </xsl:when>
                     <xsl:when test="xvrl:metadata/xvrl:schema[@schematypens eq 'http://www.w3.org/2001/XMLSchema']">
-                        <xsl:value-of select="'XML Schema validation'" />
+                        <xsl:text>XML Schema validation</xsl:text>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="'Report ' || position()" />
                     </xsl:otherwise>
                 </xsl:choose>
             </h2>
-            <table>
-                <xsl:if test="exists(xvrl:metadata/xvrl:schema/@href)">
-                    <tr>
-                        <th scope="row">Schema</th>
-                        <td>
-                            <a>
-                                <xsl:attribute
-                                    name="href"
-                                    select="xvrl:metadata/xvrl:schema/@href" />
-                                <xsl:value-of select="xvrl:metadata/xvrl:schema/@href" />
-                            </a>
-                        </td>
-                    </tr>
-                </xsl:if>
-                <xsl:if test="exists(xvrl:metadata/xvrl:summary)">
-                    <tr>
-                        <!-- In the XVRL specification,
-                        the summary element is defined as 
-                        "An abstract of a report, a reports collection, or an individual detection."
-                        Therefore the term "Abstract" in the HTML report -->
-                        <th scope="row">Abstract</th>
-                        <td>
-                            <xsl:value-of select="xvrl:metadata/xvrl:summary" />
-                        </td>
-                    </tr>
-                </xsl:if>
-                <tr>
-                    <th scope="row">Timestamp</th>
-                    <td>
-                        <xsl:value-of select="xvrl:metadata/xvrl:timestamp" />
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Number of detections</th>
-                    <td>
-                        <xsl:value-of select="count(xvrl:detection)" />
-                    </td>
-                </tr>
-            </table>
-            <table>
-                <thead>
-                    <tr>
-                        <th scope="col">Severity</th>
-                        <xsl:if test="exists(xvrl:detection/xvrl:category)">
-                            <th scope="col">Category</th>
-                        </xsl:if>
-                        <th scope="col">Message</th>
-                        <th scope="col">Location</th>
-                        <th scope="col">Supplemental information</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <xsl:for-each select="xvrl:detection">
+            <div class="ds-flex-column">
+                <table>
+                    <caption>Overview</caption>
+                    <xsl:if test="exists(xvrl:metadata/xvrl:schema/@href)">
                         <tr>
+                            <th scope="row">Schema</th>
                             <td>
-                                <xsl:value-of select="@severity" />
-                            </td>
-                            <xsl:if test="exists(xvrl:category)">
-                                <td>
-                                    <xsl:value-of select="xvrl:category" />
-                                </td>
-                            </xsl:if>
-                            <td>
-                                <xsl:value-of select="xvrl:message" />
-                            </td>
-                            <td>
-                                <xsl:if test="exists(xvrl:location/@*)">
-                                    <ul>
-                                        <xsl:for-each select="xvrl:location/@*">
-                                            <li>
-                                                <xsl:value-of select="local-name() || ': ' || ." />
-                                            </li>
-                                        </xsl:for-each>
-                                    </ul>
-                                </xsl:if>
-                            </td>
-                            <td>
-                                <xsl:if test="exists(xvrl:supplemental)">
-                                    <ul>
-                                        <xsl:for-each select="xvrl:supplemental">
-                                            <li>
-                                                <xsl:value-of select="text()" />
-                                            </li>
-                                        </xsl:for-each>
-                                    </ul>
-                                </xsl:if>
+                                <a>
+                                    <xsl:attribute
+                                        name="href"
+                                        select="xvrl:metadata/xvrl:schema/@href" />
+                                    <xsl:value-of select="xvrl:metadata/xvrl:schema/@href" />
+                                </a>
                             </td>
                         </tr>
-                    </xsl:for-each>
-                </tbody>
-            </table>
+                    </xsl:if>
+                    <xsl:if test="exists(xvrl:metadata/xvrl:summary)">
+                        <tr>
+                            <!-- In the XVRL specification,
+                            the summary element is defined as 
+                            "An abstract of a report, a reports collection, or an individual detection."
+                            Therefore the term "Abstract" in the HTML report -->
+                            <th scope="row">Abstract</th>
+                            <td>
+                                <xsl:value-of select="xvrl:metadata/xvrl:summary" />
+                            </td>
+                        </tr>
+                    </xsl:if>
+                    <tr>
+                        <th scope="row">Timestamp</th>
+                        <td>
+                            <xsl:value-of select="xvrl:metadata/xvrl:timestamp" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Number of detections</th>
+                        <td>
+                            <xsl:value-of select="count(xvrl:detection)" />
+                        </td>
+                    </tr>
+                </table>
+                <xsl:if test="exists(xvrl:detection)">
+                    <table>
+                        <caption>Detections</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Severity</th>
+                                <xsl:if test="exists(xvrl:detection/xvrl:category)">
+                                    <th scope="col">Category</th>
+                                </xsl:if>
+                                <th scope="col">Message</th>
+                                <th scope="col">Location</th>
+                                <th scope="col">Supplemental information</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <xsl:for-each select="xvrl:detection">
+                                <tr>
+                                    <td>
+                                        <xsl:value-of select="@severity" />
+                                    </td>
+                                    <xsl:if test="exists(xvrl:category)">
+                                        <td>
+                                            <xsl:value-of select="xvrl:category" />
+                                        </td>
+                                    </xsl:if>
+                                    <td>
+                                        <xsl:value-of select="xvrl:message" />
+                                    </td>
+                                    <td>
+                                        <xsl:if test="exists(xvrl:location/@*)">
+                                            <ul>
+                                                <xsl:for-each select="xvrl:location/@*">
+                                                    <li>
+                                                        <xsl:value-of select="local-name() || ': '" />
+                                                        <code>
+                                                            <xsl:value-of select="." />
+                                                        </code>
+                                                    </li>
+                                                </xsl:for-each>
+                                            </ul>
+                                        </xsl:if>
+                                    </td>
+                                    <td>
+                                        <xsl:if test="exists(xvrl:supplemental)">
+                                            <ul>
+                                                <xsl:for-each select="xvrl:supplemental">
+                                                    <li>
+                                                        <xsl:value-of select="text()" />
+                                                    </li>
+                                                </xsl:for-each>
+                                            </ul>
+                                        </xsl:if>
+                                    </td>
+                                </tr>
+                            </xsl:for-each>
+                        </tbody>
+                    </table>
+                </xsl:if>
+            </div>
         </section>
     </xsl:template>
 
