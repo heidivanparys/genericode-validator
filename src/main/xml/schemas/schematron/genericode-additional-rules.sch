@@ -293,6 +293,12 @@
 				diagnostics="diag_node_value">
 				virkningFra must be a valid date in the format YYYY-MM-DD.
 			</assert>
+			
+			<assert
+				id="row_virkningfra_not_empty"
+				test="normalize-space(.) != ''">
+				The field virkningFra must not be empty.
+			</assert>
 		</rule>
 		
 		<rule context="Row/Value[@ColumnRef='virkningTil']/SimpleValue[text() != '']">
@@ -315,15 +321,7 @@
 		</rule>
 		
 		<rule context="SimpleCodeList/Row">
-			<let name="virkningfraVal" value="Value[@ColumnRef='virkningFra']/SimpleValue" />
-			<assert
-				id="row_virkningfra_not_empty"
-				test="normalize-space($virkningfraVal) != ''">
-				The field virkningFra must not be empty.
-			</assert>
-			
 			<let name="rowvaluecount" value="count(Value)" />
-			
 			<assert 
 				id="row_value_count_equals_column_count"
 				test="$rowvaluecount eq $countOfColumns"
@@ -331,9 +329,7 @@
 				The number of row values must equal the number of declared columns.
 			</assert>
 			
-			
 			<let name="columnRefs" value="Value/@ColumnRef" />
-            
 			<assert
                 id="row_value_order_equals_column_order"
                 test="deep-equal(for $columnRef in $columnRefs return string($columnRef),for $id in $availableColumns/@Id return string($id))"

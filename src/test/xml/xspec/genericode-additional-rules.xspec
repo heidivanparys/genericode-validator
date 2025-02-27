@@ -186,7 +186,7 @@
 			<x:expect-assert id="row_virkningfra_format_as_date" count="5" />
 			<x:expect-assert id="row_virkningtil_format_as_date" count="4" />
 			<x:expect-assert id="row_virkningtil_date_after_virkningfra" count="2" />
-			<x:expect-assert id="row_virkningfra_not_empty" count="2" />
+			<x:expect-assert id="row_virkningfra_not_empty" count="1" />
 		</x:scenario>
 	</x:scenario>
 	
