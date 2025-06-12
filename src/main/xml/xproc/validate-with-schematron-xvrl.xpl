@@ -13,7 +13,7 @@
         The names of the ports and the options use the same naming conventions as used 
         in the XProc Validation steps specification.
     </p:documentation>
-
+    
     <p:input
         port="source"
         primary="true"

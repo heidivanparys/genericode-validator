@@ -79,10 +79,16 @@ Open report.html in a browser.
 
 ### Running the tests
 
-On Windows, the [XSpec](https://github.com/xspec/xspec/) Schematron tests can run using the batch file in the [scripts folder](/scripts). Run the batch file from the _root directory_ of the repository:
+On Windows, the [XSpec](https://github.com/xspec/xspec/) Schematron tests can run using batch file `run-schematron-tests.bat` in the [scripts folder](/scripts). Run the batch file from the _root directory_ of the repository:
 
 ```bat
 scripts\run-schematron-tests.bat
+```
+
+On Windows, the tests written in XProc can run using batch file `run-xproc-tests.bat` in the [scripts folder](/scripts). Run the batch file from the _root directory_ of the repository:
+
+```bat
+scripts\run-xproc-tests.bat
 ```
 
 ### Creating the validation rules documentation

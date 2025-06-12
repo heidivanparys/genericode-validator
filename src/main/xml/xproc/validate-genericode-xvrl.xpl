@@ -14,7 +14,7 @@
     </p:documentation>
 
     <p:import href="validate-with-schematron-xvrl.xpl" />
-
+    
     <p:input
         port="source"
         primary="true"
@@ -144,5 +144,5 @@
             name="parameters"
             select="map {'timestamp' : current-dateTime(), 'document' : $base-uri-source }" />
     </p:xslt>
-
+    
 </p:declare-step>
