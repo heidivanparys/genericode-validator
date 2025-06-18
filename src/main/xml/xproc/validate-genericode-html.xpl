@@ -4,13 +4,16 @@
     xmlns:err="http://www.w3.org/ns/xproc-error"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     xmlns:gv="urn:uuid:54458f97-a354-46fe-b0ec-6d7a009d0e7a"
-    name="validate-genericode-html"
+    type="gv:validate-genericode-html"
     version="3.0">
 
     <p:documentation>This step validates a genericode document against
         (1) the genericode XML schema, (2) the genericode document rules
         and (3) additional rules defined by KDS,
         and creates one overall HTML validation report.
+        
+        The output from this step is a copy of the input,
+        the HTML validation report appears on the report port.
     </p:documentation>
 
     <p:import href="validate-genericode-xvrl.xpl" />
@@ -23,7 +26,19 @@
     <p:output
         port="result"
         primary="true"
+        content-types="xml">
+        <p:pipe
+            step="create-copy-of-input"
+            port="result" />
+    </p:output>
+
+    <p:output
+        port="report"
+        primary="false"
         content-types="html">
+        <p:pipe
+            step="xvrl-2-html"
+            port="result" />
     </p:output>
 
     <p:option
@@ -36,6 +51,8 @@
         as="xsd:boolean"
         select="false()"
         static="true" />
+        
+    <p:identity name="create-copy-of-input" />
 
     <gv:validate-genericode-xvrl
         name="validate-genericode-xvrl"

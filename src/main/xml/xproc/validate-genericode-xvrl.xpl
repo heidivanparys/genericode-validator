@@ -11,6 +11,9 @@
         (1) the genericode XML schema, (2) the genericode document rules
         and (3) additional rules defined by KDS,
         and creates one overall XVRL validation report.
+        
+        The output from this step is a copy of the input,
+        the XVRL validation report appears on the report port.
     </p:documentation>
 
     <p:import href="validate-with-schematron-xvrl.xpl" />
@@ -53,34 +56,8 @@
         name="base-uri-source"
         select="base-uri(/)" />
 
-    <p:variable
-        name="content-type-source"
-        select="p:document-property(/, 'content-type')" />
-
     <p:identity
-        name="create-copy-of-input"
-        message="Create copy of input" />
-
-    <p:if
-        test="not($content-type-source eq 'application/xml') and starts-with(lower-case($base-uri-source), 'http')"
-        message="Check if source should be retrieved via HTTP">
-
-        <!-- If this is not done, the following error will be thrown by p:validate-with-xml-schema
-        for .gc documents on e.g. GitHub:
-        Document with mediatype 'application/octet-stream' is not accepted by port 'source'. -->
-        <p:http-request message="{'Requesting resource via HTTP on URL ' || $base-uri-source}">
-            <p:with-option
-                name="href"
-                select="$base-uri-source" />
-            <p:with-option
-                name="headers"
-                select="map {'concent-type' : 'application/xml'}" />
-            <p:with-option
-                name="parameters"
-                select="map {'override-content-type' : 'application/xml'}" />
-        </p:http-request>
-
-    </p:if>
+        name="create-copy-of-input" />
 
     <p:validate-with-xml-schema
         name="validate-genericode-xsd"
