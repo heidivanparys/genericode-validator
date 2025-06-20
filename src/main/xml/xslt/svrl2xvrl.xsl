@@ -28,8 +28,10 @@
         name="default-severity"
         as="xsd:string"
         select="'error'" />
+        
+    <xsl:mode on-no-match="text-only-copy" />
 
-    <xsl:template match="/svrl:schematron-output">
+    <xsl:template match="svrl:schematron-output">
         <report>
             <metadata>
                 <!-- If the report has been created with SchXslt, find timestamp and validator in the locations specified below -->
@@ -62,7 +64,56 @@
                         name="href"
                         select="$schema-uri" />
                 </schema>
-            </metadata>
+                    </metadata>
+            <digest>
+                <!-- See e.g. https://github.com/xspec/xspec/wiki/Writing-Scenarios-for-Schematron#xexpect-
+                for common practices regarding the use of the role attribute in SVRL reports. -->
+                <xsl:variable
+                    name="noOfDetectionsWithoutExplicitSeverity"
+                    select="count(svrl:failed-assert[not(exists(@role))]) + count(svrl:successful-report[not(exists(@role))])" />
+                <xsl:variable
+                    name="noOfDetectionsExplicitFatalError"
+                    select="count(svrl:failed-assert[lower-case(@role) eq 'fatal-error']) + count(svrl:successful-report[lower-case(@role) eq 'fatal-error'])" />
+                <xsl:variable
+                    name="noOfDetectionsExplicitError"
+                    select="count(svrl:failed-assert[lower-case(@role) eq 'error']) + count(svrl:successful-report[lower-case(@role) eq 'error'])" />
+                <xsl:variable
+                    name="noOfDetectionsExplicitWarning"
+                    select="count(svrl:failed-assert[lower-case(@role) eq 'warning']) + count(svrl:successful-report[lower-case(@role) eq 'warning']) + count(svrl:failed-assert[lower-case(@role) eq 'warn']) + count(svrl:successful-report[lower-case(@role) eq 'warn'])" />
+                <xsl:variable
+                    name="noOfDetectionsExplicitInfo"
+                    select="count(svrl:failed-assert[lower-case(@role) eq 'info']) + count(svrl:successful-report[lower-case(@role) eq 'info'])" />
+                    
+                <xsl:variable
+                    name="noOfDetectionsFatalError"
+                    select="if (lower-case($default-severity) eq 'fatal-error') then ($noOfDetectionsWithoutExplicitSeverity + $noOfDetectionsExplicitFatalError) else ($noOfDetectionsExplicitFatalError)" />
+                <xsl:variable
+                    name="noOfDetectionsError"
+                    select="if (lower-case($default-severity) eq 'error') then ($noOfDetectionsWithoutExplicitSeverity + $noOfDetectionsExplicitError) else ($noOfDetectionsExplicitError)" />
+                <xsl:variable
+                    name="noOfDetectionsWarning"
+                    select="if (lower-case($default-severity) eq 'warning' or lower-case($default-severity) eq 'warn') then ($noOfDetectionsWithoutExplicitSeverity + $noOfDetectionsExplicitWarning) else ($noOfDetectionsExplicitWarning)" />
+                <xsl:variable
+                    name="noOfDetectionsInfo"
+                    select="if (lower-case($default-severity) eq 'info' or lower-case($default-severity) eq 'information') then ($noOfDetectionsWithoutExplicitSeverity + $noOfDetectionsExplicitInfo) else ($noOfDetectionsExplicitInfo)" />
+                    
+                <xsl:attribute
+                    name="fatal-error-count"
+                    select="$noOfDetectionsFatalError" />
+                <xsl:attribute
+                    name="error-count"
+                    select="$noOfDetectionsError" />
+                <xsl:attribute
+                    name="warning-count"
+                    select="$noOfDetectionsWarning" />
+                <xsl:attribute
+                    name="info-count"
+                    select="$noOfDetectionsInfo" />
+                <xsl:attribute
+                    name="valid"
+                    select="if (($noOfDetectionsFatalError + $noOfDetectionsError) eq 0) then true() else false()" />
+            </digest>
+            
             <!-- No changes made to the rest of this template in comparison to 
             https://github.com/xproc/xvrl-tools/blob/24f2f9f944ff7ac06724bd6ace00b4e9f0204f28/xsl/svrl2xvrl.xsl -->
             <xsl:for-each-group

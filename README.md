@@ -6,14 +6,6 @@ genericode-validator is a tool for validating genericode files according to:
 2. the genericode document rules;
 3. additional rules specified in this repository.
 
-## About the underlying standards and tools
-
-### Genericode
-
-[Genericode](https://docs.oasis-open.org/codelist/genericode/v1.0/genericode-v1.0.html), also known as Code List Representation, is “a single semantic model for code lists and accompanying XML serialization that is designed to IT-enable and standardize the publication of machine-readable code list information and its interchange between systems”[^1]. Genericode is developed by the [Organization for the Advancement of Structured Information Standards (OASIS)](https://www.oasis-open.org/). See the [website of the OASIS Code List Representation TC](https://www.oasis-open.org/committees/codelist/) for more information.
-
-[^1]: Source: [Genericode Approved as an OASIS Standard](https://www.oasis-open.org/2023/02/01/genericode-approved-as-an-oasis-standard/)
-
 ## Installation
 
 This tool relies on the presence of Java, the XProc 3 processor Morgana, the XSLT 3 processor Saxon, and the Schematron implementation schxslt:
@@ -56,33 +48,43 @@ Customize `morgana-config.xml`:
 
 ### Validating genericode files
 
-A validation report for a genericode file is created by processing the genericode file in an [XProc 3](https://xproc.org/) pipeline.
+Validation reports for genericode files are created by processing the genericode files in an [XProc 3](https://xproc.org/) pipeline.
 
-Create a batch file `validate-genericode-html.bat` in folder `local-scripts` as follows, update the paths to the input and output:
-
-```bat
-Morgana -config=local-scripts\morgana-config.xml src\main\xml\xproc\validate-genericode-html.xpl -input:source="C:\path\to\genericode-file.gc" -output:result="C:\path\to\report.html"
-```
-
-Several genericode files can be validated at once by adding more similar lines, with other paths for the input and input.
-
-Run `validate-genericode-html.bat` from the _root directory_ of the repository:
+To validate one local genericode file, run batch file `validate-genericode-main` in folder `scripts` from the _root directory_ of the working tree of your local repository as follows:
 
 ```bat
-local-scripts\validate-genericode-html.bat
+scripts\validate-genericode-main.bat C:\path\to\codelist.gc C:\path\to\output-directory
 ```
 
-Open report.html in a browser.
+To validate all genericode files in a local directory, run batch file `validate-genericode-main` in folder `scripts` from the _root directory_ of the working tree of your local repository as follows:
+
+```bat
+scripts\validate-genericode-main.bat C:\path\to\input-directory C:\path\to\output-directory
+```
+
+To validate one online genericode file, run batch file `validate-genericode-main` in folder `scripts` from the _root directory_ of the working tree of your local repository as follows:
+
+```bat
+scripts\validate-genericode-main.bat https://example.org/codelist.gc C:\path\to\output-directory
+```
+
+Open the validation report(s) created in `C:\path\to\output-directory` in a browser.
 
 
 ## Development
 
 ### Running the tests
 
-On Windows, the [XSpec](https://github.com/xspec/xspec/) Schematron tests can run using the batch file in the [scripts folder](/scripts). Run the batch file from the _root directory_ of the repository:
+On Windows, the [XSpec](https://github.com/xspec/xspec/) Schematron tests can run using batch file `run-schematron-tests.bat` in the [scripts folder](/scripts). Run the batch file from the _root directory_ of the repository:
 
 ```bat
 scripts\run-schematron-tests.bat
+```
+
+On Windows, the tests written in XProc can run using batch file `run-xproc-tests.bat` in the [scripts folder](/scripts). Run the batch file from the _root directory_ of the repository:
+
+```bat
+scripts\run-xproc-tests.bat
 ```
 
 ### Creating the validation rules documentation
@@ -109,3 +111,11 @@ local-scripts\validate-genericode-html.bat
 > 4. Run `generate-docs.bat`;
 > 5. Commit the files in the `docs` folder and push your changes to your fork;
 > 6. Create a pull request that is based on the central repository's `gh-pages` branch.
+
+## About the underlying standards and tools
+
+### Genericode
+
+[Genericode](https://docs.oasis-open.org/codelist/genericode/v1.0/genericode-v1.0.html), also known as Code List Representation, is “a single semantic model for code lists and accompanying XML serialization that is designed to IT-enable and standardize the publication of machine-readable code list information and its interchange between systems”[^1]. Genericode is developed by the [Organization for the Advancement of Structured Information Standards (OASIS)](https://www.oasis-open.org/). See the [website of the OASIS Code List Representation TC](https://www.oasis-open.org/committees/codelist/) for more information.
+
+[^1]: Source: [Genericode Approved as an OASIS Standard](https://www.oasis-open.org/2023/02/01/genericode-approved-as-an-oasis-standard/)
