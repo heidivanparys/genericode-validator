@@ -6,7 +6,7 @@
     xmlns:gv="urn:uuid:54458f97-a354-46fe-b0ec-6d7a009d0e7a"
     xmlns:xvrl="http://www.xproc.org/ns/xvrl"
     type="gv:validate-xvrl-report"
-    version="3.0">
+    version="3.1">
 
     <p:documentation>This step checks the validity of a XVRL report
         against the XVRL RELAX NG schema.

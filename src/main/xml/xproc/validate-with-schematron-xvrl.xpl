@@ -5,7 +5,7 @@
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     xmlns:gv="urn:uuid:54458f97-a354-46fe-b0ec-6d7a009d0e7a"
     type="gv:validate-with-schematron-xvrl"
-    version="3.0">
+    version="3.1">
 
     <p:documentation>This step applies Schematron processing to the source document
         and creates a XVRL report using the svrl2xvrl.xsl stylesheet in this code base
