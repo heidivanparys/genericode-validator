@@ -6,7 +6,7 @@
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     xmlns:gv="urn:uuid:54458f97-a354-46fe-b0ec-6d7a009d0e7a"
     name="validate-genericode-xvrl-test"
-    version="3.0">
+    version="3.1">
 
     <p:documentation>
         This test step tests step validate-genericode-xvrl: it checks that the XVRL validation reports for all genericode files in this

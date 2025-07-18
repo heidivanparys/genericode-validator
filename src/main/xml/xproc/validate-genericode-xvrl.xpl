@@ -5,7 +5,7 @@
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     xmlns:gv="urn:uuid:54458f97-a354-46fe-b0ec-6d7a009d0e7a"
     type="gv:validate-genericode-xvrl"
-    version="3.0">
+    version="3.1">
 
     <p:documentation>This step validates a genericode document against
         (1) the genericode XML schema, (2) the genericode document rules

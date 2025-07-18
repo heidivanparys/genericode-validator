@@ -6,7 +6,7 @@
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     xmlns:gv="urn:uuid:54458f97-a354-46fe-b0ec-6d7a009d0e7a"
     name="create-validation-reports"
-    version="3.0">
+    version="3.1">
 
     <p:documentation>This step is the primary entry point to genericode-validator.
         It validates one or more genericode documents,

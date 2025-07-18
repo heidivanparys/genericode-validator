@@ -4,7 +4,7 @@
     xmlns:p="http://www.w3.org/ns/xproc"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     name="generate-docs"
-    version="3.0">
+    version="3.1">
 
     <p:documentation>This step creates HTML pages containing documentation of the validation rules in folder docs in this repository. The output of
         this step should only be present in the branch from which the documentation is published on the web.
